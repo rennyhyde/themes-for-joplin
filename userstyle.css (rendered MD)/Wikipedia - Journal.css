@@ -215,6 +215,7 @@ img::after {
   color: var(--bodyText);
 }
 
+/* ----- Custom HTML Tag Support ----- */
 /* Redact module */
 redact {
   white-space: pre-wrap;
@@ -266,9 +267,57 @@ redact.spoiler:hover {
   background-color: var(--background) !important;
   color: var(--bodyText) !important;
   word-break: normal;
+  cursor: pointer;
 }
 
 redact.spoiler[warning]:hover::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  /*color: var(--bodyText) !important;*/
+  word-break: normal;
+}
+
+/* Redact flags -----
+---Display like normal---
+text-security: none !important;
+-webkit-text-security: none !important;
+-mox-text-security: none !important;
+background-color: var(--background) !important;
+color: var(--bodyText) !important;
+word-break: normal;
+
+---Redact---
+white-space: pre-wrap;
+text-security:disc;
+-webkit-text-security:disc;
+-mox-text-security:disc;
+word-break: break-all;
+user-select: none;
+background-color: var(--bodyText);
+margin-left: 0.0em;
+
+---Hide---
+text-security:disc;
+-webkit-text-security:disc;
+-mox-text-security:disc;
+display: none !important;
+
+*/
+
+[flag~="xyz"] {
+  white-space: pre-wrap;
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  word-break: break-all;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+}
+
+[flag~="abc"], [flag~="A B C"], [flag~="bac"] {
   text-security: none !important;
   -webkit-text-security: none !important;
   -mox-text-security: none !important;
@@ -289,6 +338,7 @@ redactFile {
   position: absolute;
 }
 
+/* --broken--
 redactFile::before {
   position: relative;
   visibility: visible;
@@ -304,19 +354,61 @@ redactFile.hidden::before {
   font-style: italic;
   font-size: 0px;
 }
+*/
 
-a {
+/* Hover module */
+hoverContent {
   color: var(--linkColor);
-  counter-increment: linknum;
+  position: relative;
+  width: 100%;
 }
 
-a::after {
-  content: " [" counter(linknum) "]";
-  color: var(--linkColor);
-  font-weight: lighter;
+hoverContent:before {
+  content: attr(content);
+  visibility: hidden;
+  opacity: 0;
+  display: block;
+  width: max-content;
+  overflow-x: visible;
+  max-width: 60vw;
+  background-color: var(--headerBox);
+  color: var(--headerBoxText);
+  font-size: 14px;
+  text-align: center;
+  border-style: solid;
+  border-color: var(--background);
+  border-width: 10px;
+  padding: 0px 5px 0px 5px;
+  /*transition: opacity 0.5s ease-in-out;*/
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 110%;
 }
 
-/* do not print note title */
+hoverContent:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Time-passing ellipse */
+timePassing {
+  width: 100vw;
+  position: relative;
+}
+
+timePassing::before {
+  content: "✦   ✦   ✦";
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  color: var(--bodyText);
+  /*line-height: 0.25em;*/
+}
+
+/* print note title */
 .exported-note-title {
 	font-size: 1.5em;
   font-weight: bold;
@@ -332,7 +424,7 @@ a::after {
   font-family: "Linux Libertine", "Georgia", "Times", serif;
 }
 
-.exported-note-title::before: {
+.exported-note-title::before {
   content: url(https://www.fileformat.info/info/unicode/char/1f310/globe_with_meridians.svg);
   max-height: 1.25em;
   width: auto;

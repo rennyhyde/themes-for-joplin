@@ -137,6 +137,7 @@ a {
   color: var(--linkColor);
 }
 
+/* ----- Custom HTML Tag Support ----- */
 /* Redact module */
 redact {
   white-space: pre-wrap;
@@ -226,8 +227,8 @@ text-security:disc;
 display: none !important;
 
 */
-/*
-[flag~="drugs"] {
+
+[flag~="xyz"] {
   white-space: pre-wrap;
   text-security:disc;
   -webkit-text-security:disc;
@@ -238,16 +239,7 @@ display: none !important;
   margin-left: 0.0em;
 }
 
-[flag~="sex"], [flag~="NSFW"], [flag~="nsfw"] {
-  text-security: none !important;
-  -webkit-text-security: none !important;
-  -mox-text-security: none !important;
-  background-color: var(--background) !important;
-  color: var(--bodyText) !important;
-  word-break: normal;
-}
-
-[flag~="mean"] {
+[flag~="abc"], [flag~="A B C"], [flag~="bac"] {
   text-security: none !important;
   -webkit-text-security: none !important;
   -mox-text-security: none !important;
@@ -268,6 +260,7 @@ redactFile {
   position: absolute;
 }
 
+/* --broken--
 redactFile::before {
   position: relative;
   visibility: visible;
@@ -284,6 +277,7 @@ redactFile.hidden::before {
   font-size: 0px;
 }
 */
+
 /* Hover module */
 hoverContent {
   color: var(--linkColor);

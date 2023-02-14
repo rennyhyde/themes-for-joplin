@@ -1,3 +1,4 @@
+/* ----- Custom HTML Tag Support ----- */
 /* Redact module */
 redact {
     white-space: pre-wrap;
@@ -120,6 +121,7 @@ redact {
     position: absolute;
   }
   
+  /* --broken--
   redactFile::before {
     position: relative;
     visibility: visible;
@@ -135,7 +137,8 @@ redact {
     font-style: italic;
     font-size: 0px;
   }
-  
+  */
+
   /* Hover module */
   hoverContent {
     color: var(--linkColor);
