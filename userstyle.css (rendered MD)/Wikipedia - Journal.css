@@ -1,0 +1,347 @@
+/* Theme: Wikipedia */
+
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/* color variables */
+:root {
+  --background: #ffffff;
+  --bodyText: #202122;
+  --headerBox: #f6f7f8;
+  --headerBoxText: #202122;
+  --boldText: #0644ac;
+  --italicText: #0644ac;
+  --linkColor: #0644ac;
+}
+
+/* body text and background formatting*/
+body, p, ul, ol{
+  color: var(--bodyText); /* body text color */
+  font-size: 0.93em;
+  background-color: var(--background); /* background color, used to be faf0e6*/
+  font-family: sans-serif;
+}
+
+ul, ol {
+  list-style-position: inside;
+  background-color: var(--headerBox);
+  padding: 5px;
+}
+
+ul:first-child {
+  color: red;
+}
+
+li {
+  color: var(--italicText);
+}
+
+h1 {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+  border-bottom: 0.5px solid #aaaaaa;
+  padding-bottom: .3em;
+}
+
+h1::after {
+  padding-left: 5px;
+  content: "[edit]";
+  color: var(--linkColor);
+  font-weight: lighter;
+  font-size: 85%;
+}
+
+h2 {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+  border-bottom: 0.5px solid #aaaaaa;
+  padding-bottom: .3em;
+}
+
+h2::after {
+  padding-left: 5px;
+  content: "[edit]";
+  color: var(--linkColor);
+  font-weight: lighter;
+  font-size: 85%;
+}
+
+h3 {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+}
+
+h4 {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+}
+
+/* Add top margin for documents starting with paragraph text (not heading box) */
+/*#rendered-md > p:first-child {*/
+body {
+  margin-top: 15px;
+  padding-top: 0;
+}
+
+/* header image */
+/*
+#joplin-container-content::before{
+  display: flex;
+  width: 40%;
+  height: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  content: "";
+  background: url(https://www.kxan.com/wp-content/uploads/sites/40/2017/07/rick-astley-never-gonna-give-you-up_35327903_ver1.0.jpg?w=1208&h=714&crop=1) no-repeat 0 0;
+  background-size: 100%;
+}
+*/
+
+/* header box formatting */
+.hljs {
+  border-style: solid;
+  border-color: #aaaaaa;
+  border-width: 0.25px;
+  border-radius: 0px;
+  background: var(--headerBox); /* header box background color */
+  color: var(--headerBoxText); /* header box text color */
+  padding: 0;
+  font-weight: 500;
+  font-size: 1.125em;
+}
+
+/* code text formatting */
+code {
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+}
+
+/* code in header box padding*/
+pre.hljs {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+/* get rid of automatic code color formatting*/
+
+span.hljs-keyword, span.hljs-number, span.hljs-operator, span.hljs-string, span.hljs-regexp, span.hljs-attribute, span.hljs-comment, span.hljs-built_in, span.hljs-symbol {
+  color: #0644ac; /* header box text color */
+  font-style: bold !important;
+}
+
+/* bold text color*/
+strong {
+  color: var(--boldText);
+}
+
+em {
+  color: var(--italicText);
+}
+/* horizontal line formatting*/
+hr {
+  border: none;
+  border-bottom: 1px solid #202122; /* horizontal line color */
+}
+
+/* block quote formatting*/
+blockquote {
+  opacity: 1 !important;
+  border: none;
+}
+
+blockquote > p {
+  color: var(--bodyText);
+}
+
+/* change bullet point icons ☆✶ */
+/* first line */
+ul > li {
+  list-style-type: none;
+  counter-increment: item;
+}
+
+ul > li::before {
+  float: left;
+  width: auto;
+  display: inline-block;
+  padding-right: 0.75em;
+  font-weight: 400;
+  color: var(--bodyText);
+  content: counter(item) "   ";
+}
+
+/* second line */
+ul ul {
+  list-style-type: decimal;
+
+}
+
+/* third line */
+ul ul ul {
+  list-style-type: decimal;
+}
+
+/* third line */
+ul ul ul ul {
+  list-style-type: decimal;
+}
+
+/* Inline code formatting */
+code.inline-code {
+  border-radius: 0;
+  border-color: var(--headerBox);
+  background-color: var(--headerBox);
+  color: var(--headerBoxText);
+}
+
+/* image formatting */
+img {
+/*  display: flex;
+  max-height: 85vh;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  padding: 10px;
+  border: solid 0.5px #202122; */
+  display: flex;
+  width: 30vw;
+  border: solid 0.25px #202122;
+  margin-left: auto;
+  padding: 10px;
+  background-color: var(--headerBox);
+}
+
+img::after {
+  content: "This is an image";
+  color: var(--bodyText);
+}
+
+/* Redact module */
+redact {
+  white-space: pre-wrap;
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  word-break: break-all;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+}
+
+redact[reason]::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  content: "[Redacted: " attr(reason) "] ";
+  /*font-style: italic;*/
+  padding-left: 0.35em;
+  background-color: var(--bodyText) !important;
+  color: var(--background) !important;
+  visibility: visible !important;
+  word-break: normal;
+}
+
+redact.spoiler {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+  word-break: normal;
+}
+
+redact.spoiler[warning]::before {
+content: "[CW: " attr(warning) " - Hover/tap to reveal] ";
+/*font-style: italic;*/
+visibility: visible !important;
+word-break: normal;
+background-color: var(--bodyText);
+color: var(--background);
+}
+
+redact.spoiler:hover {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+redact.spoiler[warning]:hover::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+.hidden {
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  display: none !important;
+}
+
+redactFile {
+  visibility: hidden;
+  position: absolute;
+}
+
+redactFile::before {
+  position: relative;
+  visibility: visible;
+  content: "[File removed]";
+  font-style: italic;
+  font-size: 16px;
+}
+
+redactFile.hidden::before {
+  position: absolute;
+  visibility: hidden !important;
+  content: "" !important;
+  font-style: italic;
+  font-size: 0px;
+}
+
+a {
+  color: var(--linkColor);
+  counter-increment: linknum;
+}
+
+a::after {
+  content: " [" counter(linknum) "]";
+  color: var(--linkColor);
+  font-weight: lighter;
+}
+
+/* do not print note title */
+.exported-note-title {
+	font-size: 1.5em;
+  font-weight: bold;
+  border-bottom: 0.5px solid #aaaaaa;
+  padding-bottom: .3em;
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+}
+
+.exported-note-title::before {
+  content: "Rennypedia:";
+  font-size: 1.5em;
+  padding-right: 15px;
+  font-family: "Linux Libertine", "Georgia", "Times", serif;
+}
+
+.exported-note-title::before: {
+  content: url(https://www.fileformat.info/info/unicode/char/1f310/globe_with_meridians.svg);
+  max-height: 1.25em;
+  width: auto;
+}
+/* Unused code */
+
+/* change list line spacing */
+/*
+ul, ol {
+  line-height: ;
+}
+*/

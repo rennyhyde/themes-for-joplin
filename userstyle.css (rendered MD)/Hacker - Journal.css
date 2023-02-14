@@ -1,0 +1,254 @@
+/* Theme: I'm in */
+
+/* color variables */
+:root {
+  --background: #0c0c0c;
+  --bodyText: #39ff14;
+  --headerBox: #0c0c0c;
+  --headerBoxText: #39ff14;
+  --strongText: #39ff14;
+  --linkColor: #39ff14;
+}
+
+/* body text and background formatting*/
+body, p, ul, ol{
+  color: var(--bodyText); /* body text color */
+  font-size: 16px;
+  background-color: var(--background); /* background color, used to be faf0e6*/
+  font-family: monospace;
+}
+
+p:focus {
+  color: red;
+}
+
+p::before {
+  content: ">>";
+  padding-right: 1em;
+}
+
+h1::before {
+  content: "C:/Documents/Journal/";
+  color: var(--linkColor);
+  font-weight: lighter;
+  border-style: none;
+}
+
+h1 {
+  font-weight: lighter;
+  border: none;
+}
+
+h2::before {
+  content: "C:/Documents/Journal/";
+  color: var(--linkColor);
+  font-weight: lighter;
+  border-style: none;
+}
+
+h2 {
+  font-weight: lighter;
+  border: none;
+}
+
+/* Add top margin for documents starting with paragraph text (not heading box) */
+/*#rendered-md > p:first-child {*/
+body {
+  margin-top: 15px;
+  padding-top: 0;
+}
+
+/* header image */
+/*
+#joplin-container-content::before{
+  display: flex;
+  width: 40%;
+  height: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  content: "";
+  background: url(https://www.kxan.com/wp-content/uploads/sites/40/2017/07/rick-astley-never-gonna-give-you-up_35327903_ver1.0.jpg?w=1208&h=714&crop=1) no-repeat 0 0;
+  background-size: 100%;
+}
+*/
+
+/* header box formatting */
+.hljs {
+  border-style: dashed;
+  border-width: thin;
+  border-color: var(--bodyText);
+  background: var(--headerBox); /* header box background color */
+  color: var(--headerBoxText); /* header box text color */
+  padding: 0;
+  /* border-color: #a2a9b1;
+  border-width: 0.25; */
+}
+
+/* code text formatting */
+code {
+  font-family: monospace;
+}
+
+/* code in header box padding*/
+pre.hljs {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+/* get rid of automatic code color formatting*/
+span.hljs-keyword, span.hljs-number, span.hljs-operator, span.hljs-string, span.hljs-regexp, span.hljs-attribute, span.hljs-comment, span.hljs-built_in, span.hljs-symbol {
+  color: var(--headerBoxText); /* header box text color */
+  font-style: normal;
+}
+
+/* bold text color*/
+strong {
+  color: var(--strongText);
+}
+
+/* horizontal line formatting*/
+hr {
+  border: none;
+  border-bottom: 2px dotted var(--bodyText); /* horizontal line color */
+}
+
+/* block quote formatting*/
+blockquote {
+  border-left: none; /* block quote line/border color */
+  opacity: 100%;
+}
+
+/* change bullet point icons ☆✶ */
+/* first line */
+ul {
+  list-style-type: '- ';
+}
+
+/* Inline code formatting */
+code.inline-code {
+  border-radius: 0;
+  border-color: var(--headerBox);
+  background-color: var(--headerBox);
+  color: var(--headerBoxText);
+}
+
+/* image formatting */
+img {
+  display: flex;
+  max-height: 85vh;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+a {
+  color: var(--linkColor);
+}
+
+/* Redact module */
+redact {
+  white-space: pre-wrap;
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  word-break: break-all;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+}
+
+redact[reason]::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  content: "[Redacted: " attr(reason) "] ";
+  /*font-style: italic;*/
+  padding-left: 0.35em;
+  background-color: var(--bodyText) !important;
+  color: var(--background) !important;
+  visibility: visible !important;
+  word-break: normal;
+}
+
+redact.spoiler {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+  word-break: normal;
+}
+
+redact.spoiler[warning]::before {
+content: "[CW: " attr(warning) " - Hover/tap to reveal] ";
+/*font-style: italic;*/
+visibility: visible !important;
+word-break: normal;
+background-color: var(--bodyText);
+color: var(--background);
+}
+
+redact.spoiler:hover {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+redact.spoiler[warning]:hover::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+.hidden {
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  display: none !important;
+}
+
+redactFile {
+  visibility: hidden;
+  position: absolute;
+}
+
+redactFile::before {
+  position: relative;
+  visibility: visible;
+  content: "[File removed]";
+  font-style: italic;
+  font-size: 16px;
+}
+
+redactFile.hidden::before {
+  position: absolute;
+  visibility: hidden !important;
+  content: "" !important;
+  font-style: italic;
+  font-size: 0px;
+}
+
+/* do not print note title */
+.exported-note-title {
+		display: none !important;
+}
+
+/* Unused code */
+
+/* change list line spacing */
+/*
+ul, ol {
+  line-height: ;
+}
+*/

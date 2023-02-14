@@ -1,0 +1,189 @@
+/* Redact module */
+redact {
+    white-space: pre-wrap;
+    text-security:disc;
+    -webkit-text-security:disc;
+    -mox-text-security:disc;
+    word-break: break-all;
+    user-select: none;
+    background-color: var(--bodyText);
+    margin-left: 0.0em;
+  }
+  
+  redact[reason]::before {
+    text-security: none !important;
+    -webkit-text-security: none !important;
+    -mox-text-security: none !important;
+    content: "[Redacted: " attr(reason) "] ";
+    /*font-style: italic;*/
+    padding-left: 0.35em;
+    background-color: var(--bodyText) !important;
+    color: var(--background) !important;
+    visibility: visible !important;
+    word-break: normal;
+  }
+  
+  redact.spoiler {
+    text-security: none !important;
+    -webkit-text-security: none !important;
+    -mox-text-security: none !important;
+    user-select: none;
+    background-color: var(--bodyText);
+    margin-left: 0.0em;
+    word-break: normal;
+  }
+  
+  redact.spoiler[warning]::before {
+  content: "[CW: " attr(warning) " - Hover/tap to reveal] ";
+  /*font-style: italic;*/
+  visibility: visible !important;
+  word-break: normal;
+  background-color: var(--bodyText);
+  color: var(--background);
+  }
+  
+  redact.spoiler:hover {
+    text-security: none !important;
+    -webkit-text-security: none !important;
+    -mox-text-security: none !important;
+    background-color: var(--background) !important;
+    color: var(--bodyText) !important;
+    word-break: normal;
+    cursor: pointer;
+  }
+  
+  redact.spoiler[warning]:hover::before {
+    text-security: none !important;
+    -webkit-text-security: none !important;
+    -mox-text-security: none !important;
+    background-color: var(--background) !important;
+    /*color: var(--bodyText) !important;*/
+    word-break: normal;
+  }
+  
+  /* Redact flags -----
+  ---Display like normal---
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+  
+  ---Redact---
+  white-space: pre-wrap;
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  word-break: break-all;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+  
+  ---Hide---
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  display: none !important;
+  
+  */
+  
+  [flag~="xyz"] {
+    white-space: pre-wrap;
+    text-security:disc;
+    -webkit-text-security:disc;
+    -mox-text-security:disc;
+    word-break: break-all;
+    user-select: none;
+    background-color: var(--bodyText);
+    margin-left: 0.0em;
+  }
+  
+  [flag~="abc"], [flag~="A B C"], [flag~="bac"] {
+    text-security: none !important;
+    -webkit-text-security: none !important;
+    -mox-text-security: none !important;
+    background-color: var(--background) !important;
+    color: var(--bodyText) !important;
+    word-break: normal;
+  }
+
+  .hidden {
+    text-security:disc;
+    -webkit-text-security:disc;
+    -mox-text-security:disc;
+    display: none !important;
+  }
+  
+  redactFile {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  redactFile::before {
+    position: relative;
+    visibility: visible;
+    content: "[File removed]";
+    font-style: italic;
+    font-size: 16px;
+  }
+  
+  redactFile.hidden::before {
+    position: absolute;
+    visibility: hidden !important;
+    content: "" !important;
+    font-style: italic;
+    font-size: 0px;
+  }
+  
+  /* Hover module */
+  hoverContent {
+    color: var(--linkColor);
+    position: relative;
+    width: 100%;
+  }
+  
+  hoverContent:before {
+    content: attr(content);
+    visibility: hidden;
+    opacity: 0;
+    display: block;
+    width: max-content;
+    overflow-x: visible;
+    max-width: 60vw;
+    background-color: var(--headerBox);
+    color: var(--headerBoxText);
+    font-size: 14px;
+    text-align: center;
+    border-style: solid;
+    border-color: var(--background);
+    border-width: 10px;
+    padding: 0px 5px 0px 5px;
+    /*transition: opacity 0.5s ease-in-out;*/
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 110%;
+  }
+  
+  hoverContent:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Time-passing ellipse */
+  timePassing {
+    width: 100vw;
+    position: relative;
+  }
+  
+  timePassing::before {
+    content: "✦   ✦   ✦";
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    color: var(--bodyText);
+    /*line-height: 0.25em;*/
+  }

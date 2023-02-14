@@ -1,0 +1,327 @@
+/* Theme: Comet */
+
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+/* color variables */
+:root {
+  --background: #00052b; /* 16125B */
+  --bodyText: #FFC46B; /*test? #FFC46B *//*F3C178 */
+  --headerBox: #16125B;
+  --headerBoxText: #FFC46B;
+  --strongText: white; /* formerly #52B788*/
+  --linkColor: white;
+}
+
+/* body text and background formatting*/
+body, p, ul, ol{
+  color: var(--bodyText); /* body text color */
+  font-size: 18px;
+  background-color: var(--background); /* background color, used to be faf0e6*/
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 1.3em;
+  font-weight: bold;
+  border: none;
+  padding-bottom: .1em;
+}
+
+h1::after {
+  content: "✧";
+  padding-left: 0.3em;
+}
+
+h2::after {
+  content: "✧";
+  padding-left: 0.3em;
+}
+
+/* Add top margin for documents starting with paragraph text (not heading box) */
+/*#rendered-md > p:first-child {*/
+body {
+  margin-top: 15px;
+  padding-top: 0;
+}
+
+/* header image */
+/*
+#joplin-container-content::before{
+  display: flex;
+  width: 40vw;
+  height: 10vh;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  content: "";
+  background: url(https://www.kxan.com/wp-content/uploads/sites/40/2017/07/rick-astley-never-gonna-give-you-up_35327903_ver1.0.jpg?w=1208&h=714&crop=1) no-repeat 0 0;
+  background-size: 100%;
+}
+*/
+
+/* header box formatting */
+.hljs {
+  border-radius: 30px;
+  background-image: linear-gradient(#01082b,#000635,var(--headerBox));
+  color: var(--headerBoxText); /* header box text color */
+  padding: 0;
+  font-weight: 500;
+  border-color: var(--headerBoxText);
+  border-width: 0.1em;
+  border-style: solid;
+}
+
+/* code text formatting */
+code {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+/* code in header box padding*/
+pre.hljs {
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+}
+
+/* get rid of automatic code color formatting*/
+span.hljs-literal, span.hljs-keyword, span.hljs-number, span.hljs-operator, span.hljs-string, span.hljs-regexp, span.hljs-attribute, span.hljs-comment, span.hljs-built_in, span.hljs-symbol, span.hljs-variable, .hljs-title, .hljs-title.function_ {
+  color: var(--headerBoxText); /* header box text color */
+  font-style: normal;
+}
+
+/* bold text color*/
+strong {
+  color: var(--strongText);
+  font-weight: 600;
+  text-shadow: 0px 0px 5px #FE5000;
+}
+
+/* horizontal line formatting*/
+hr {
+  border: none;
+  border-bottom: 4px dotted var(--bodyText); /* horizontal line color */
+}
+
+/* block quote formatting*/
+blockquote {
+  border-left: 1.5px solid var(--bodyText); /* block quote line/border color */
+  opacity: 15;
+}
+
+/* change bullet point icons ☆✶ */
+/* first line */
+ul {
+  list-style-type: '✦ ';
+}
+
+/* second line */
+ul ul {
+  list-style-type: '✧ ';
+}
+
+/* third line */
+ul ul ul {
+  list-style-type: '✦ ';
+}
+
+/* third line */
+ul ul ul ul {
+  list-style-type: '✧ ';
+}
+
+/* Inline code formatting */
+code.inline-code {
+  border-radius: 0.25px;
+  border-color: var(--bodyText);
+  background-color: var(--background);
+  color: var(--headerBoxText);
+  font-size: 16px;
+  font-family: monospace;
+}
+
+/* image formatting */
+img {
+  display: flex;
+  max-height: 85vh;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  border-color: var(--headerBoxText);
+  border-width: 0.1em;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+a {
+  color: var(--linkColor);
+  font-weight: 600;
+  text-shadow: 0px 0px 5px #FE5000; /*#F3C178 */
+}
+
+a:hover {
+  color: black;
+  text-shadow: 0px 0px 15px #9203c1;
+  opacity: 100%;
+}
+
+/* Redact module */
+redact {
+  white-space: pre-wrap;
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  word-break: break-all;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+}
+
+redact[reason]::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  content: "[Redacted: " attr(reason) "] ";
+  /*font-style: italic;*/
+  padding-left: 0.35em;
+  background-color: var(--bodyText) !important;
+  color: var(--background) !important;
+  visibility: visible !important;
+  word-break: normal;
+}
+
+redact.spoiler {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  user-select: none;
+  background-color: var(--bodyText);
+  margin-left: 0.0em;
+  word-break: normal;
+}
+
+redact.spoiler[warning]::before {
+content: "[CW: " attr(warning) " - Hover/tap to reveal] ";
+/*font-style: italic;*/
+visibility: visible !important;
+word-break: normal;
+background-color: var(--bodyText);
+color: var(--background);
+}
+
+redact.spoiler:hover {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+redact.spoiler[warning]:hover::before {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+/* Redact flags -----
+---Display like normal---
+text-security: none !important;
+-webkit-text-security: none !important;
+-mox-text-security: none !important;
+background-color: var(--background) !important;
+color: var(--bodyText) !important;
+word-break: normal;
+
+---Redact---
+white-space: pre-wrap;
+text-security:disc;
+-webkit-text-security:disc;
+-mox-text-security:disc;
+word-break: break-all;
+user-select: none;
+background-color: var(--bodyText);
+margin-left: 0.0em;
+
+---Hide---
+text-security:disc;
+-webkit-text-security:disc;
+-mox-text-security:disc;
+display: none !important;
+
+*/
+
+[flag~="drugs"] {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+[flag~="sex"], [flag~="NSFW"], [flag~="nsfw"] {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+[flag~="mean"] {
+  text-security: none !important;
+  -webkit-text-security: none !important;
+  -mox-text-security: none !important;
+  background-color: var(--background) !important;
+  color: var(--bodyText) !important;
+  word-break: normal;
+}
+
+.hidden {
+  text-security:disc;
+  -webkit-text-security:disc;
+  -mox-text-security:disc;
+  display: none !important;
+}
+
+redactFile {
+  visibility: hidden;
+  position: absolute;
+}
+
+redactFile::before {
+  position: relative;
+  visibility: visible;
+  content: "[File removed]";
+  font-style: italic;
+  font-size: 16px;
+}
+
+redactFile.hidden::before {
+  position: absolute;
+  visibility: hidden !important;
+  content: "" !important;
+  font-style: italic;
+  font-size: 0px;
+}
+
+/* do not print note title */
+.exported-note-title {
+		display: none !important;
+}
+
+/* Unused code */
+
+/* change list line spacing */
+/*
+ul, ol {
+  line-height: ;
+}
+*/
