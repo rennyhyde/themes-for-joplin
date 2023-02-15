@@ -35,7 +35,7 @@ The `<redact>` tag will redact the enclosed text and make it unreadable. The `re
 `hidden` is another subclass of `redact`, which will make the text fully disappear instead of being blotted out.
 
 ### Flags
-Flags can be used to determine specific handling of the redact tag depending on the content being redacted. For instance, if you wrap text in `<redact flag="restricted-access"> </redact>`you can choose how instances of this flag are handled in your CSS. You would use the header `flag~="restricted-access"]{` and then you can fill in rules to determine whether or not this text shows up or not. You could also use this to apply other styles if you want, for example if you wanted all mentions of a specific topic to show up in a certain color. The handling for a few different cases are listed above the flag section in comments. "Display like normal" will do nothing to the wrapped text. "Redact" will follow the usual redact procedure and replace the text with a dark block. "Hide" will remove the text without replacing it with anything so readers wouldn't know it was ever there.
+Flags can be used to determine specific handling of the redact tag depending on the content being redacted. For instance, if you wrap text in `<redact flag="restricted-access"> </redact>`you can choose how instances of this flag are handled in your CSS. You would use the header `flag~=["restricted-access"]{` and then you can fill in rules to determine whether or not this text shows up or not. You could also use this to apply other styles if you want, for example if you wanted all mentions of a specific topic to show up in a certain color. The handling for a few different cases are listed above the flag section in comments. "Display like normal" will do nothing to the wrapped text. "Redact" will follow the usual redact procedure and replace the text with a dark block. "Hide" will remove the text without replacing it with anything so readers wouldn't know it was ever there.
 
 ### Time Passing
 `<timePassing></timePassing>` is an easy way to generate the big ellipsis that can act as a divider or signify time passing.
@@ -44,3 +44,5 @@ Flags can be used to determine specific handling of the redact tag depending on 
 ### Hover Content (in development)
 The `<hoverContent>` tag can be used to embed content to text that shows up as a pop-up box when the user hovers over the text. The content of the box is determined by the `content=""` attribute of the tag. The implementation of this tag isn't quite right, but it's still useable and future versions will be smoother.
 ![Spoiler demo](assets/HTML-hoverContent-demo.gif)
+
+## Previews
